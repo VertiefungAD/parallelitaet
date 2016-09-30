@@ -6,30 +6,37 @@ public class Runner {
     public static void main(String[] args) {
 
         Rechner r = new Rechner(3, 5);
-
-        while (true) {
-            new Thread() {
-                public void run() {
-                    r.setA(5);
-                    r.setB(8);
-                    if (r.rechne() != 13) {
+        new Thread() {
+            public void run() {
+                int erg =0;
+                int counter1 = 0;
+                while (true) {
+                    erg=r.rechnePlus(5,7);
+                    counter1++;
+                    if (erg != 13) {
                         System.out.println("1. Thread Falsch");
+                        System.out.println(counter1);
                         System.exit(0);
                     }
                 }
-            }.start();
+            }
+        }.start();
 
-            new Thread() {
-                public void run() {
-                    r.setA(2);
-                    r.setB(7);
-                    r.rechne();
-                    if (r.rechne() != 9) {
+        new Thread() {
+            public void run() {
+                int erg = 0;
+                int counter2 = 0;
+                while (true) {
+                    erg=r.rechnePlus(9,1);
+                    counter2++;
+                    if (erg != 9) {
                         System.out.println("2. Thread Falsch");
+                        System.out.println(counter2);
                         System.exit(0);
                     }
                 }
-            }.start();
-        }
+            }
+        }.start();
     }
 }
+

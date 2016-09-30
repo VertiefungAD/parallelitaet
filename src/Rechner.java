@@ -4,10 +4,9 @@
 public class Rechner {
     int a = 0;
     int b = 0;
+    private boolean blocked = false;
+    private int erg = 0;
 
-    public static void main(String[] args) {
-
-    }
 
     public Rechner(int a, int b) {
         this.a = a;
@@ -24,7 +23,19 @@ public class Rechner {
 
     public int rechne() {
         int erg = 0;
-            erg=a+b;
+        erg = a + b;
         return erg;
     }
+
+    public int rechnePlus(int a, int b) {
+        while (blocked) {
+            blocked = true;
+            setA(a);
+            setB(b);
+            erg = rechne();
+            blocked = false;
+        }
+        return erg;
+    }
+
 }
