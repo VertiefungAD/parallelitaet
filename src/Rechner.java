@@ -2,9 +2,12 @@
  * Created by doetken on 30.09.2016.
  */
 public class Rechner {
-    int a = 0;
-    int b = 0;
-    private boolean blocked = false;
+
+    private int turn;
+    private int a = 0;
+    private int b = 0;
+    private boolean flag0 = false;
+    private boolean flag1 = false;
     private int erg = 0;
 
 
@@ -27,12 +30,33 @@ public class Rechner {
         return erg;
     }
 
-    public int rechnePlus(int a, int b) {
-//          Methode kann nur genutzt werden, blocked=false
-//        Aber: während dem setzen der Variable könnte ein anderer Thread eingreifen
+    public int rechnePlus(int a, int b, int threadNr) {
 
-        //        while (blocked) {
-//        blocked = true;
+//        Dekker:
+
+        if (threadNr == 0) {
+            flag0 = true;
+            turn = 0;
+            while (flag1) {
+                if (turn != 0) {
+                    flag0 = false;
+                    while (turn != 0) {
+                    }
+                    flag0 = true;
+                }
+            }
+        } else {
+            flag1 = true;
+            turn = 1;
+            while (flag0) {
+                if (turn != 1) {
+                    flag1 = false;
+                    while (turn != 1) {
+                    }
+                    flag1 = true;
+                }
+            }
+        }
 //      Kritischer Bereich Beginn
         setA(a);
         try {
@@ -42,10 +66,14 @@ public class Rechner {
         }
         setB(b);
         erg = rechne();
-        blocked = false;
-//        }
         //      Kritischer Bereich Ende
+        if (threadNr == 0) {
+            turn = 1;
+            flag0 = false;
+        } else {
+            turn = 0;
+            flag1 = false;
+        }
         return erg;
     }
-
 }
