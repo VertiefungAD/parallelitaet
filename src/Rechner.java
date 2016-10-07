@@ -28,13 +28,13 @@ public class Rechner {
     }
 
     public int rechnePlus(int a, int b) {
-        while (blocked) {
-            blocked = true;
-            setA(a);
-            setB(b);
-            erg = rechne();
-            blocked = false;
-        }
+//        while (blocked) {
+        blocked = true;
+        setA(a);
+        setB(b);
+        erg = rechne();
+        blocked = false;
+//        }
         return erg;
     }
 
