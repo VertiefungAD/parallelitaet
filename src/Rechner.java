@@ -35,25 +35,25 @@ public class Rechner {
 //        Dekker:
 
         if (threadNr == 0) {
-            flag0 = true;
-            turn = 0;
-            while (flag1) {
-                if (turn != 0) {
-                    flag0 = false;
-                    while (turn != 0) {
+            this.flag0 = true;
+            this.turn = 0;
+            while (this.flag1) {
+                if (this.turn != 0) {
+                    this.flag0 = false;
+                    while (this.turn != 0) {
                     }
-                    flag0 = true;
+                    this.flag0 = true;
                 }
             }
         } else {
-            flag1 = true;
-            turn = 1;
-            while (flag0) {
-                if (turn != 1) {
-                    flag1 = false;
-                    while (turn != 1) {
+            this.flag1 = true;
+            this.turn = 1;
+            while (this.flag0) {
+                if (this.turn != 1) {
+                    this.flag1 = false;
+                    while (this.turn != 1) {
                     }
-                    flag1 = true;
+                    this.flag1 = true;
                 }
             }
         }
@@ -68,11 +68,11 @@ public class Rechner {
         erg = rechne();
         //      Kritischer Bereich Ende
         if (threadNr == 0) {
-            turn = 1;
-            flag0 = false;
+            this.turn = 1;
+            this.flag0 = false;
         } else {
-            turn = 0;
-            flag1 = false;
+            this.turn = 0;
+            this.flag1 = false;
         }
         return erg;
     }
