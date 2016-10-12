@@ -1,0 +1,16 @@
+
+// todo: ggf. könnte man mit Hilfe des Stringbuilders die Verzweigung löschen und den flag-Namen mit .append zusammenbauen...
+        // Dazu: this.turn=threadNr;
+        // StringBuilder sb = new StringBuilder();
+        // sb.append("flag");
+        // sb.append(threadNr);
+        // getestet = Variablenname nicht dynamisch baubar!!
+        //sb = true;
+        // this.turn = threadNr;
+        //      while (this.flag1) {
+        //       if (this.turn != 0) {
+        //         this.flag0 = false;
+        //             while (this.turn != 0) {
+        //               }
+        //                this.flag0 = true;
+        //               }
