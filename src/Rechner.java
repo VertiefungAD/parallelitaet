@@ -28,19 +28,36 @@ public class Rechner {
         ergRechne = a + b;
         return ergRechne;
     }
+//    public int enter_region(int a, int b, int threadNr) {
+//        int other = 1 - threadNr;
+//        turn = other;
+//        flag[threadNr] = true;
+//        while (flag[other] && turn == other) {
+//        }
+//        leave_region(threadNr);
+//        return rechnePlus(a, b, threadNr);
+//    }
+//
+////    public int rechnePlus(int a, int b, int threadNr) {
+////
+////        setA(a);
+////        setB(b);
+////        this.erg = rechne();
+////        System.out.println(threadNr);
+////        return this.erg;
+////    }
+//
+//    public void leave_region(int process) {
+//        flag[process] = false;
+////        System.out.println(process + " " );
+//    }
+
 
     public int enter_region(int a, int b, int threadNr) {
         int other = 1 - threadNr;
         turn = other;
         flag[threadNr] = true;
-        while (flag[other] && turn == other) {
-        }
-        leave_region(threadNr);
-        return rechnePlus(a, b, threadNr);
-    }
-
-    public int rechnePlus(int a, int b, int threadNr) {
-
+        while (flag[other] && turn == other) ;
         setA(a);
         setB(b);
         this.erg = rechne();
@@ -63,11 +80,8 @@ public class Rechner {
             }
 
         }
+        System.out.println(threadNr + " fertig");
+        flag[threadNr] = false;
         return this.erg;
-    }
-
-    public void leave_region(int process) {
-        flag[process] = false;
-//        System.out.println(process + " " );
     }
 }
