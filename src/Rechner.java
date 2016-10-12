@@ -6,10 +6,7 @@ public class Rechner {
     private int turn;
     private int a = 0;
     private int b = 0;
-    //  zur Anwendung des Algorythmus notwendige Variablen werden als private Attribute deklariert
-    // initialisiert werden die flags ("Zeichen, dass der Thread in den kritischen Bereich möchte") mit false,
-    // dies ändert der jeweilige Thread, wenn er die Methode des Rechners aufruft
-    private boolean[] flag = new boolean[2];
+    private boolean[] flag = {false, false};
     private int erg = 0;
 
 
@@ -27,53 +24,50 @@ public class Rechner {
     }
 
     public int rechne() {
-        int erg = 0;
-        erg = a + b;
-        return erg;
+        int ergRechne = 0;
+        ergRechne = a + b;
+        return ergRechne;
     }
 
-    //BETROFFENE METHODE:
-    // Die Methode weiss, mit welchen Zahlen sie rechnen soll
-    // und an Hand der threadNr welcher Thread (s. Runner) auf sie zugreift
+    public int enter_region(int a, int b, int threadNr) {
+        int other = 1 - threadNr;
+        turn = other;
+        flag[threadNr] = true;
+        while (flag[other] && turn == other) {
+        }
+        leave_region(threadNr);
+        return rechnePlus(a, b, threadNr);
+    }
+
     public int rechnePlus(int a, int b, int threadNr) {
 
-        this.flag[0] = false;
-        this.flag[1] = false;
-//        Dekker:
-        // if-Verzweigung unterscheidet nach den beiden Threads
-        //turn wird auf die jeweilige threadNr gesetzt
-        this.turn = threadNr;
-        // default: flags = false, wird nun true gesetzt
-        this.flag[threadNr] = true;
-        // Schleife wird begonnen, wenn der andere Thread bereits sein flag auf true gesetzt hat, sonst direkt Kritischer Bereich
-        while (this.flag[1 - threadNr]) {
-            // weitere Frage und Wartezeit nur, wenn der andere Thread nicht schon für diesen Thread das turn gesetzt hat
-            if (this.turn != threadNr) {
-                // wenn noch nicht "gleich" frei, dann verzichtet dieser Thread erstmal
-                // auf die Anfrage an den kritischen Bereich
-                this.flag[threadNr] = false;
-                // ...und der Thread wartet bis der andere Thread turn auf die ID dieses Threads setzt
-                while (this.turn != threadNr) {
-                }
-                // nun hat ja der andere Thread den kritischen Bereich offensichtlich verlassen und dieser Thread
-                // meldet Anspruch mit flag=true
-                this.flag[threadNr] = true;
-            }
-        }
-//      Kritischer Bereich Beginn
         setA(a);
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         setB(b);
-        erg = rechne();
-        //      Kritischer Bereich Ende
+        this.erg = rechne();
+        switch (threadNr) {
+            default:
+                break;
+            case 0: {
+                if (this.erg != 12) {
+                    System.out.println("1. Thread Falsch");
+                    System.exit(0);
+                }
+                break;
+            }
+            case 1: {
+                if (this.erg != 10) {
+                    System.out.println("2. Thread Falsch");
+                    System.exit(0);
+                }
+                break;
+            }
 
-            this.turn = 1-threadNr;
-            this.flag[threadNr] = false;
+        }
+        return this.erg;
+    }
 
-        return erg;
+    public void leave_region(int process) {
+        flag[process] = false;
+//        System.out.println(process + " " );
     }
 }
