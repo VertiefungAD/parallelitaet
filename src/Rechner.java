@@ -16,27 +16,20 @@ public class Rechner {
     }
 
     public void setA(int a) {
-        synchronized (this) {
-            this.a = a;
-        }
+        this.a = a;
+
     }
 
     public void setB(int b) {
-        synchronized (this) {
-
-            this.b = b;
-        }
+        this.b = b;
     }
 
     public int rechne() {
-        synchronized (this) {
-            synchronized (this) {
-                int ergRechne = 0;
-                ergRechne = a + b;
-                return ergRechne;
-            }
 
-        }
+        int ergRechne = 0;
+        ergRechne = a + b;
+        return ergRechne;
+
     }
 
 

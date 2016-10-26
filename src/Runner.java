@@ -8,24 +8,26 @@ public class Runner {
         final Rechner r = new Rechner(3, 5);
         new Thread() {
             public void run() {
-                System.out.println(r.rechnePlus(5, 7));
+                synchronized (r) {
+                    System.out.println(r.rechnePlus(5, 7));
 
 //                int erg;
 //                while (true) {
 //                    erg = r.enter_region(5, 7, 0);
-//                }
+                }
             }
         }.start();
 
         new Thread() {
             public void run() {
-                System.out.println(r.rechnePlus(4, 6));
+                synchronized (r) {
+                    System.out.println(r.rechnePlus(4, 6));
 //                int erg;
 //                while (true) {
 //                    erg = r.enter_region(4, 6, 1);
 //                }
+                }
             }
         }.start();
     }
 }
-
