@@ -10,10 +10,6 @@ public class Runner {
             public void run() {
                 synchronized (r) {
                     System.out.println(r.rechnePlus(5, 7));
-
-//                int erg;
-//                while (true) {
-//                    erg = r.enter_region(5, 7, 0);
                 }
             }
         }.start();
@@ -22,10 +18,6 @@ public class Runner {
             public void run() {
                 synchronized (r) {
                     System.out.println(r.rechnePlus(4, 6));
-//                int erg;
-//                while (true) {
-//                    erg = r.enter_region(4, 6, 1);
-//                }
                 }
             }
         }.start();

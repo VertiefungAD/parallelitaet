@@ -2,13 +2,9 @@
  * Created by doetken on 30.09.2016.
  */
 public class Rechner {
-
-    //    private int turn;
     private int a = 0;
     private int b = 0;
-    //    private boolean[] flag = {false, false};
     private int erg = 0;
-    final Object test = new Object();
 
     public Rechner(int a, int b) {
         this.a = a;
@@ -32,7 +28,6 @@ public class Rechner {
 
     }
 
-
     public int rechnePlus(int a, int b) {
         int ergebnis = 0;
 
@@ -42,5 +37,4 @@ public class Rechner {
         ergebnis = rechne();
         return ergebnis;
     }
-
 }
