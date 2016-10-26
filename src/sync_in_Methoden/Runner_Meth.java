@@ -14,8 +14,24 @@ public class Runner_Meth {
             public void run() {
                 int counter1 = 1;
                 while (counter1 < 10) {
-                    System.out.println("-----------------------------1:");
-                    r.rechnePlus(5, 7);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                    }
+                    r.setA(5);
+                    System.out.println("1 hat A gesetzt");
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                    }
+                    r.setB(7);
+                    System.out.println("1 hat B gesetzt");
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                    }
+                    r.rechne();
+                    System.out.println("1 hat gerechnet");
                     System.out.println("Anzahl 1: " + counter1);
                     counter1++;
                 }
@@ -26,8 +42,24 @@ public class Runner_Meth {
             public void run() {
                 int counter2 = 1;
                 while (counter2 < 10) {
-                    System.out.println("-----------------------------2:");
-                    r.rechnePlus(4, 6);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                    }
+                    r.setA(4);
+                    System.out.println("2 hat A gesetzt");
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                    }
+                    r.setB(6);
+                    System.out.println("2 hat B gesetzt");
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                    }
+                    r.rechne();
+                    System.out.println("2 hat gerechnet");
                     System.out.println("Anzahl 2: " + counter2);
                     counter2++;
                 }
