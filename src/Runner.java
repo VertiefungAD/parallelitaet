@@ -8,19 +8,22 @@ public class Runner {
         final Rechner r = new Rechner(3, 5);
         new Thread() {
             public void run() {
-                int erg;
-                while (true) {
-                    erg = r.enter_region(5, 7, 0);
-                }
+                System.out.println(r.rechnePlus(5, 7));
+
+//                int erg;
+//                while (true) {
+//                    erg = r.enter_region(5, 7, 0);
+//                }
             }
         }.start();
 
         new Thread() {
             public void run() {
-                int erg;
-                while (true) {
-                    erg = r.enter_region(4, 6, 1);
-                }
+                System.out.println(r.rechnePlus(4, 6));
+//                int erg;
+//                while (true) {
+//                    erg = r.enter_region(4, 6, 1);
+//                }
             }
         }.start();
     }
